@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "448938694974",
+    "project_id": "fluttertest-b2eed",
+    "storage_bucket": "fluttertest-b2eed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448938694974:android:f2b1d51532c7202f95b46f",
+        "android_client_info": {
+          "package_name": "com.example.shop_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrUgCbxdAe9r0mgrt_sdsAn-tRyP6qeDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
