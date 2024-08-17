@@ -121,6 +121,14 @@ class RegisterScreen extends StatelessWidget {
                         child: const Text('REGISTER',style: TextStyle(color: Colors.white,fontSize: 20.0),),
                       ),
                     ),
+                    const SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Already have an account?',style: TextStyle(color: Colors.deepPurple,fontSize: 20.0),),
+                        TextButton(onPressed: (){
+                          Navigator.pop(context);
+                        }, child: const Text('Login',style: TextStyle(color: Colors.deepPurple,fontSize: 20.0),))]),
         
                   ],
                 ),

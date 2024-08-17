@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/bloc_file/state_page.dart';
+import 'package:shop_app/classes/cart_mode.dart';
 import 'package:shop_app/classes/search_model.dart';
 import 'package:shop_app/classes/cache_memory/cache_memory_file.dart';
 import 'package:shop_app/classes/categories_data_model.dart';
@@ -21,6 +22,9 @@ class AppCubit extends Cubit<AppStates>{
   static AppCubit get(context) => BlocProvider.of(context);
  LoginInfo? loginUserInfo;
   int currentIndex = 0;
+
+  int imageIndex = 0;
+
   List<dynamic>bottomScreens = [
    const HomeScreenInNavigationBar(),
     const CategoriesScreen(),
@@ -28,6 +32,12 @@ class AppCubit extends Cubit<AppStates>{
     const CartScreen(),
 
   ];
+
+  void changeimage(index){
+    imageIndex = index;
+    emit(ChangeIndexState());
+  }
+
 
   void changeIndex(int index){
     currentIndex = index;
@@ -38,13 +48,15 @@ void userLogin({required String email, required String password}){
   emit(LoginLoadingState());
    DioHelper.postData(url:loginUrl,data:  {
     'email': email,
-    'password': password,}).then((value) {
+    'password': password,}).then((value)
+   {
       loginUserInfo = LoginInfo.fromJson(value.data);
 
       emit(LoginSuccessState(loginUserInfo!));
       print(value.data);
 
-   }).catchError((error){
+   }).catchError((error)
+   {
      print(error.toString());
     emit(LoginErrorState());
 
@@ -203,9 +215,42 @@ void search({required String text}){
 
   });}
 
+  CartMode ? cartModel;
+  void getCartData(){
+emit(CartLoadingState());
+   DioHelper.getData(url:'carts', token: CacheMemory.getData(key: 'token')).then((value) {
+
+    cartModel = CartMode.fromJson(value.data);
+    print('${cartModel?.status}') ;
+    emit(CartSuccessState());
+
+  }).catchError((error){
+    print(error.toString());
+    emit(CartErrorState());
+
+  });}
+
+void addDeleteCart({required int productId}){
+  emit(AddToCartLoadingState());
+  DioHelper.postData(url:'carts',data:  {
+    'product_id': productId,
+  },token: CacheMemory.getData(key: 'token')).then((value) {
+    getCartData();
+    emit(AddToCartSuccessState());
+
+  }).catchError((error){
+    emit(AddToCartErrorState());
+    print(error.toString());
+  });}
+
 
 
 
 
 
 }
+
+
+
+
+

@@ -20,6 +20,7 @@ Future<void> main() async {
   if(token==null) {
     widget =  OnboardingScreen();
   }else{
+    print("token is $token");
     widget =  HomeScreen();
   }
 
@@ -33,10 +34,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return BlocProvider(create: (context)=>AppCubit()..getHomeData()..getFavoritesData()..getUserData(),
+    return BlocProvider(create: (context)=>AppCubit()..getHomeData()..getFavoritesData()..getUserData()..getCartData(),
     child: BlocConsumer<AppCubit,AppStates>(
       listener: (context,state){},
       builder: (context,state){
+        print("rebuild main app");
         return MaterialApp(
 
           debugShowCheckedModeBanner: false,

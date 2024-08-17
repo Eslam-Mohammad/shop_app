@@ -65,3 +65,11 @@ class UpdateUserErrorState extends AppStates {}
 class SearchLoadingState extends AppStates {}
 class SearchSuccessState extends AppStates {}
 class SearchErrorState extends AppStates {}
+
+class CartLoadingState extends AppStates {}
+class CartSuccessState extends AppStates {}
+class CartErrorState extends AppStates {}
+
+class AddToCartLoadingState extends AppStates {}
+class AddToCartSuccessState extends AppStates {}
+class AddToCartErrorState extends AppStates {}
