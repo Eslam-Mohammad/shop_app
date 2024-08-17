@@ -53,7 +53,7 @@ void userLogin({required String email, required String password}){
       loginUserInfo = LoginInfo.fromJson(value.data);
 
       emit(LoginSuccessState(loginUserInfo!));
-      print(value.data);
+
 
    }).catchError((error)
    {
@@ -106,7 +106,7 @@ emit(AddDeleteFavoritesLoadingState());
     'product_id': productId,
   }, token: CacheMemory.getData(key: 'token')).then((value) async{
     statusModelForFavorites = StatusModelForFavorites.fromJson(value.data);
-    print(value.data);
+
     if(statusModelForFavorites!.status!){
       if(favoritesIdsSet.contains(productId))
       {
@@ -124,6 +124,7 @@ emit(AddDeleteFavoritesLoadingState());
   }).catchError((error) {
     print(error.toString());
   });
+  return null;
 }
 
 FavoritesModel ? favoritesModel;
@@ -192,7 +193,7 @@ void updateUser({required String name,required String email,required String phon
     },token: CacheMemory.getData(key: 'token')).then((value) {
     userInfo = LoginInfo.fromJson(value.data);
     emit(UpdateUserSuccessState());
-    print(value.data);
+
   }).catchError((error){
     print(error.toString());
     emit(UpdateUserErrorState());
@@ -208,7 +209,7 @@ void search({required String text}){
   }).then((value) {
     searchModel = SearchModel.fromJson(value.data);
     emit(SearchSuccessState());
-    print(value.data);
+
   }).catchError((error){
     print(error.toString());
     emit(SearchErrorState());
@@ -221,7 +222,7 @@ emit(CartLoadingState());
    DioHelper.getData(url:'carts', token: CacheMemory.getData(key: 'token')).then((value) {
 
     cartModel = CartMode.fromJson(value.data);
-    print('${cartModel?.status}') ;
+
     emit(CartSuccessState());
 
   }).catchError((error){

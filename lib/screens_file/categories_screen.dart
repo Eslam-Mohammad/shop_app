@@ -104,7 +104,7 @@ Widget buildCategoryItemFirstDesign(CategoryModel model, int index) {
 Widget buildCategoryItemSecondDesign(
     {Color color=Colors.orange, String name = 'Clothes', String image='images/brand.png'}) {
   return  InkWell(
-    onTap: (){print(name);},
+    onTap: (){},
     child: Container(
       width: 70,
       height: 100,

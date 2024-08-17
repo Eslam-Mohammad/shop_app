@@ -14,7 +14,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(builder: (context, state) {
 
-      print("rebuild search screen");
+
       return Scaffold(
         appBar: AppBar(),
         body: Padding(

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
     child: BlocConsumer<AppCubit,AppStates>(
       listener: (context,state){},
       builder: (context,state){
-        print("rebuild main app");
+
         return MaterialApp(
 
           debugShowCheckedModeBanner: false,

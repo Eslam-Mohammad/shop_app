@@ -17,7 +17,7 @@ class HomeScreenInNavigationBar extends StatelessWidget {
 
 
   return BlocConsumer<AppCubit,AppStates>(builder: (context,state){
-    print("rebuild home screen");
+
     return  ConditionalBuilder(
         condition: cubit.homeModel != null &&
             cubit.homeModel?.data != null &&

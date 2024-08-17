@@ -40,7 +40,7 @@ class ItemDetailsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Image(
-                        image: NetworkImage(images![AppCubit.get(context).imageIndex] ?? ''),
+                        image: NetworkImage(images?[AppCubit.get(context).imageIndex] ?? ''),
                         width: double.infinity,
                         height: 200,
                         fit: BoxFit.fill,
@@ -90,11 +90,11 @@ class ItemDetailsScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         alignment: Alignment.bottomLeft,
-                        child: Text("Description:",
+                        child: const Text("Description:",
                             textAlign: TextAlign.left,
-                            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                       ),
-                      SizedBox(height: 20.0,),
+                      const SizedBox(height: 20.0,),
                       Text(
                         maxLines: 19,
                         overflow: TextOverflow.ellipsis,
@@ -112,7 +112,7 @@ class ItemDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20.0,),
+            const SizedBox(height: 20.0,),
             Padding(
               padding: const EdgeInsets.only(bottom: 5.0,left: 10.0,right: 10.0),
               child: Row(
@@ -135,9 +135,9 @@ class ItemDetailsScreen extends StatelessWidget {
                         AppCubit.get(context).addDeleteCart(productId: id!);
 
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text('Added to Cart'),
-                                duration: const Duration(seconds: 3),
+                                duration: Duration(seconds: 3),
                               ),
                             );
 
