@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/classes/cache_memory/cache_memory_file.dart';
-import 'package:shop_app/constant_variables_file.dart';
-import 'package:shop_app/screens_file/home_screen.dart';
+
+import 'package:shop_app/Core/constant_variables_file.dart';
+
+import '../Core/cache_memory/cache_memory_file.dart';
+import '../Presenter/bloc_file/cubit_page.dart';
+import '../Presenter/bloc_file/state_page.dart';
+import 'home_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
    RegisterScreen({super.key});

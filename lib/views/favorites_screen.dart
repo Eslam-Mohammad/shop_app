@@ -1,10 +1,12 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/classes/favorites_model.dart';
-import 'package:shop_app/screens_file/home_screen.dart';
+
+
+import '../Data/models/favorites_model.dart';
+import '../Presenter/bloc_file/cubit_page.dart';
+import '../Presenter/bloc_file/state_page.dart';
+import 'home_screen.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});

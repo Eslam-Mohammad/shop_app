@@ -38,7 +38,7 @@ class DioHelper {
 
       'Authorization': token ?? '',
     };
-    return dio!.post(
+    return await dio!.post(
       url,
       data: data,
     );
@@ -56,7 +56,8 @@ class DioHelper {
 
       'Authorization': token ?? '',
     };
-    return dio!.put(
+
+    return await dio!.put(
       url,
       data: data,
     );

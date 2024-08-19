@@ -1,10 +1,10 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/screens_file/item_details_screen.dart';
 
-import '../classes/home_data_model.dart';
+import '../../Data/models/home_data_model.dart';
+import '../../Presenter/bloc_file/cubit_page.dart';
+import '../../views/item_details_screen.dart';
 
 Widget buildGridProduct(ProductModel model,BuildContext context) {
 

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/classes/search_model.dart';
-import 'package:shop_app/screens_file/item_details_screen.dart';
+
+import '../Data/models/search_model.dart';
+import '../Presenter/bloc_file/cubit_page.dart';
+import '../Presenter/bloc_file/state_page.dart';
+import 'item_details_screen.dart';
+
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
