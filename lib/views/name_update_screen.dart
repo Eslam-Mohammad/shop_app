@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/screens_file/account_screen.dart';
 
-class EmailUpdateScreen extends StatelessWidget {
-  EmailUpdateScreen({super.key});
-var emailController = TextEditingController();
+import '../Presenter/bloc_file/cubit_page.dart';
+import '../Presenter/bloc_file/state_page.dart';
+import 'account_screen.dart';
+
+
+class NameUpdateScreen extends StatelessWidget {
+   NameUpdateScreen({super.key});
+  var nameController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return  BlocConsumer<AppCubit,AppStates>(builder:(context,state){
+    return BlocConsumer<AppCubit,AppStates>(builder:(context,state){
       return  Scaffold(
         appBar: AppBar(
           leading: IconButton(icon: const Icon(Icons.arrow_back_ios), onPressed: (){
@@ -28,17 +30,17 @@ var emailController = TextEditingController();
                 const SizedBox(height: 40,),
                 TextFormField(
                   validator: (value){
-                    if(value!.isEmpty||value.contains('@')==false||value.contains('.com')==false){
-                      return 'Please enter your Email';
+                    if(value!.isEmpty){
+                      return 'Please enter your name';
                     }
                     return null;
                   },
 
-                  controller: emailController,
+                  controller: nameController,
                   decoration: InputDecoration(
 
 
-                    labelText:'Email',
+                    labelText:'Name',
                     prefixIcon: const Icon(Icons.person,color: Colors.deepPurple,),
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0),borderSide: const BorderSide(color: Colors.deepPurple,width: 20.0)),
                   ),
@@ -53,11 +55,11 @@ var emailController = TextEditingController();
                   child:  MaterialButton(
                     onPressed: (){
                       if(formKey.currentState!.validate()){
-                        AppCubit.get(context).updateUser(name:AppCubit.get(context).userInfo!.data!.name!, email: emailController.text,
-                            phone: AppCubit.get(context).userInfo!.data!.phone!);
+                         AppCubit.get(context).updateUser(name:nameController.text, email: AppCubit.get(context).userInfo!.data!.email!,
+                             phone: AppCubit.get(context).userInfo!.data!.phone!);
                       }
                     },
-                    child: const Text('Update Email',style: TextStyle(color: Colors.white,fontSize: 20.0),),
+                    child: const Text('Update Name',style: TextStyle(color: Colors.white,fontSize: 20.0),),
                   ),
                 ),
               ],

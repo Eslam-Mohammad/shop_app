@@ -1,26 +1,31 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/classes/search_model.dart';
-import 'package:shop_app/classes/cache_memory/cache_memory_file.dart';
-import 'package:shop_app/classes/categories_data_model.dart';
-import 'package:shop_app/classes/favorites_model.dart';
-import 'package:shop_app/classes/home_data_model.dart';
-import 'package:shop_app/classes/login_class/login_class_file.dart';
-import 'package:shop_app/screens_file/cart_screen.dart';
-import 'package:shop_app/screens_file/categories_screen.dart';
-import 'package:shop_app/screens_file/favorites_screen.dart';
-import 'package:shop_app/screens_file/home_screen_in_navigationbar.dart';
+import 'package:shop_app/Presenter/bloc_file/state_page.dart';
 
-import '../api_file/dio_file.dart';
-import '../api_file/end_points.dart';
+
+import '../../Core/cache_memory/cache_memory_file.dart';
+import '../../Data/api_file/dio_file.dart';
+import '../../Data/api_file/end_points.dart';
+import '../../Data/models/cart_mode.dart';
+import '../../Data/models/categories_data_model.dart';
+import '../../Data/models/favorites_model.dart';
+import '../../Data/models/home_data_model.dart';
+import '../../Data/models/login_class/login_class_file.dart';
+import '../../Data/models/search_model.dart';
+import '../../views/cart_screen.dart';
+import '../../views/categories_screen.dart';
+import '../../views/favorites_screen.dart';
+import '../../views/home_screen_in_navigationbar.dart';
 
 
 class AppCubit extends Cubit<AppStates>{
   AppCubit() : super(InitialState());
 
+
+
   static AppCubit get(context) => BlocProvider.of(context);
- LoginInfo? loginUserInfo;
+
   int currentIndex = 0;
+  int imageIndex = 0;
   List<dynamic>bottomScreens = [
    const HomeScreenInNavigationBar(),
     const CategoriesScreen(),
@@ -28,23 +33,29 @@ class AppCubit extends Cubit<AppStates>{
     const CartScreen(),
 
   ];
-
+  void changeimage(index){
+    imageIndex = index;
+    emit(ChangeIndexState());
+  }
   void changeIndex(int index){
     currentIndex = index;
     emit(ChangeIndexState());
   }
 
-void userLogin({required String email, required String password}){
+  LoginInfo? loginUserInfo;
+  void userLogin({required String email, required String password}){
   emit(LoginLoadingState());
    DioHelper.postData(url:loginUrl,data:  {
     'email': email,
-    'password': password,}).then((value) {
+    'password': password,}).then((value)
+   {
       loginUserInfo = LoginInfo.fromJson(value.data);
 
       emit(LoginSuccessState(loginUserInfo!));
-      print(value.data);
 
-   }).catchError((error){
+
+   }).catchError((error)
+   {
      print(error.toString());
     emit(LoginErrorState());
 
@@ -52,13 +63,9 @@ void userLogin({required String email, required String password}){
 
 }
 
-
 HomeModel? homeModel;
-
   Map<int,bool>favoritesMap = {};
-
-
-void getHomeData(){
+  void getHomeData(){
   emit(HomeLoadingState());
   DioHelper.getData(url:homeUrl ).then((value) {
     homeModel = HomeModel.fromJson(value.data);
@@ -74,8 +81,7 @@ void getHomeData(){
   });
 }
 CategoryModel? categoryModel;
-
-void getCategoryData(){
+  void getCategoryData(){
   emit(CategoryLoadingState());
   DioHelper.getData(url:categoriesUrl ).then((value) {
     categoryModel = CategoryModel.fromJson(value.data);
@@ -85,16 +91,14 @@ void getCategoryData(){
     print(error.toString());
   });
 }
-
 StatusModelForFavorites ? statusModelForFavorites;
-
-Future<void>? addDeleteFavorites({required int productId}) {
+  Future<void>? addDeleteFavorites({required int productId}) {
 emit(AddDeleteFavoritesLoadingState());
   DioHelper.postData(url: favoritesUrl, data: {
     'product_id': productId,
   }, token: CacheMemory.getData(key: 'token')).then((value) async{
     statusModelForFavorites = StatusModelForFavorites.fromJson(value.data);
-    print(value.data);
+
     if(statusModelForFavorites!.status!){
       if(favoritesIdsSet.contains(productId))
       {
@@ -112,8 +116,8 @@ emit(AddDeleteFavoritesLoadingState());
   }).catchError((error) {
     print(error.toString());
   });
+  return null;
 }
-
 FavoritesModel ? favoritesModel;
 Set<int>favoritesIdsSet = {};
  Future<void> getFavoritesData() async {
@@ -180,7 +184,7 @@ void updateUser({required String name,required String email,required String phon
     },token: CacheMemory.getData(key: 'token')).then((value) {
     userInfo = LoginInfo.fromJson(value.data);
     emit(UpdateUserSuccessState());
-    print(value.data);
+
   }).catchError((error){
     print(error.toString());
     emit(UpdateUserErrorState());
@@ -196,11 +200,39 @@ void search({required String text}){
   }).then((value) {
     searchModel = SearchModel.fromJson(value.data);
     emit(SearchSuccessState());
-    print(value.data);
+
   }).catchError((error){
     print(error.toString());
     emit(SearchErrorState());
 
+  });}
+
+  CartMode ? cartModel;
+  void getCartData(){
+emit(CartLoadingState());
+   DioHelper.getData(url:'carts', token: CacheMemory.getData(key: 'token')).then((value) {
+
+    cartModel = CartMode.fromJson(value.data);
+
+    emit(CartSuccessState());
+
+  }).catchError((error){
+    print(error.toString());
+    emit(CartErrorState());
+
+  });}
+
+void addDeleteCart({required int productId}){
+  emit(AddToCartLoadingState());
+  DioHelper.postData(url:'carts',data:  {
+    'product_id': productId,
+  },token: CacheMemory.getData(key: 'token')).then((value) {
+    getCartData();
+    emit(AddToCartSuccessState());
+
+  }).catchError((error){
+    emit(AddToCartErrorState());
+    print(error.toString());
   });}
 
 
@@ -209,3 +241,8 @@ void search({required String text}){
 
 
 }
+
+
+
+
+

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/classes/cache_memory/cache_memory_file.dart';
-import 'package:shop_app/screens_file/home_screen.dart';
-import 'package:shop_app/screens_file/register_screen.dart';
+import 'package:shop_app/Presenter/bloc_file/cubit_page.dart';
+import 'package:shop_app/views/register_screen.dart';
 
-import '../constant_variables_file.dart';
+
+import '../Core/cache_memory/cache_memory_file.dart';
+import '../Core/constant_variables_file.dart';
+import '../Presenter/bloc_file/state_page.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
    LoginScreen({super.key});
@@ -94,7 +95,12 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           const Text('Don\'t have an account?',style: TextStyle(fontSize: 16.0),),
                           TextButton(onPressed: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> RegisterScreen()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> BlocListener<AppCubit, AppStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  child: RegisterScreen(),
+)));
                           }, child: const Text('REGISTER NOW',style: TextStyle(fontSize: 16.0,color: Colors.deepPurple),)),
                         ],
                       ),

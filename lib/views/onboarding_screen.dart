@@ -5,7 +5,7 @@ import 'login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({super.key});
-final pageController = PageController();
+final  pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

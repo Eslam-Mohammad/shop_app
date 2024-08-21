@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/classes/cache_memory/cache_memory_file.dart';
-import 'package:shop_app/constant_variables_file.dart';
-import 'package:shop_app/screens_file/home_screen.dart';
+
+import 'package:shop_app/Core/constant_variables_file.dart';
+
+import '../Core/cache_memory/cache_memory_file.dart';
+import '../Presenter/bloc_file/cubit_page.dart';
+import '../Presenter/bloc_file/state_page.dart';
+import 'home_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
    RegisterScreen({super.key});
@@ -121,6 +123,14 @@ class RegisterScreen extends StatelessWidget {
                         child: const Text('REGISTER',style: TextStyle(color: Colors.white,fontSize: 20.0),),
                       ),
                     ),
+                    const SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Already have an account?',style: TextStyle(color: Colors.deepPurple,fontSize: 20.0),),
+                        TextButton(onPressed: (){
+                          Navigator.pop(context);
+                        }, child: const Text('Login',style: TextStyle(color: Colors.deepPurple,fontSize: 20.0),))]),
         
                   ],
                 ),

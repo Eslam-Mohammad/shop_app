@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/classes/cache_memory/cache_memory_file.dart';
-import 'package:shop_app/screens_file/email_update_screen.dart';
-import 'package:shop_app/screens_file/login_screen.dart';
-import 'package:shop_app/screens_file/name_update_screen.dart';
-import 'package:shop_app/screens_file/phone_update_screen.dart';
+
+import 'package:shop_app/views/phone_update_screen.dart';
+
+import '../Core/cache_memory/cache_memory_file.dart';
+import '../Presenter/bloc_file/cubit_page.dart';
+import 'email_update_screen.dart';
+import 'login_screen.dart';
+import 'name_update_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});

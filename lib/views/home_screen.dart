@@ -1,19 +1,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop_app/bloc_file/cubit_page.dart';
-import 'package:shop_app/bloc_file/state_page.dart';
-import 'package:shop_app/classes/cache_memory/cache_memory_file.dart';
-import 'package:shop_app/screens_file/about_us_screen.dart';
-import 'package:shop_app/screens_file/account_screen.dart';
-import 'package:shop_app/screens_file/contactus_screen.dart';
-import 'package:shop_app/screens_file/login_screen.dart';
-import 'package:shop_app/screens_file/search_screen.dart';
+import 'package:shop_app/views/search_screen.dart';
+
+import '../Core/cache_memory/cache_memory_file.dart';
+import '../Presenter/bloc_file/cubit_page.dart';
+import '../Presenter/bloc_file/state_page.dart';
+import 'about_us_screen.dart';
+import 'account_screen.dart';
+import 'contactus_screen.dart';
+import 'login_screen.dart';
+
 
 
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 

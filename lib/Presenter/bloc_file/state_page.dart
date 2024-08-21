@@ -1,8 +1,10 @@
-import 'package:shop_app/classes/categories_data_model.dart';
-import 'package:shop_app/classes/favorites_model.dart';
 
-import '../classes/home_data_model.dart';
-import '../classes/login_class/login_class_file.dart';
+
+import '../../Data/models/categories_data_model.dart';
+import '../../Data/models/favorites_model.dart';
+import '../../Data/models/home_data_model.dart';
+import '../../Data/models/login_class/login_class_file.dart';
+
 
 abstract class AppStates {}
 
@@ -65,3 +67,11 @@ class UpdateUserErrorState extends AppStates {}
 class SearchLoadingState extends AppStates {}
 class SearchSuccessState extends AppStates {}
 class SearchErrorState extends AppStates {}
+
+class CartLoadingState extends AppStates {}
+class CartSuccessState extends AppStates {}
+class CartErrorState extends AppStates {}
+
+class AddToCartLoadingState extends AppStates {}
+class AddToCartSuccessState extends AppStates {}
+class AddToCartErrorState extends AppStates {}
