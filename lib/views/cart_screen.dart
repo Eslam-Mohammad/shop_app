@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/generated/l10n.dart';
 
 import '../Data/models/cart_mode.dart';
 import '../Presenter/bloc_file/cubit_page.dart';
@@ -84,7 +85,7 @@ var cubit = AppCubit.get(context).cartModel?.data?.cartItems;
               Row(
                 children: [
                   const Spacer(),
-                  Text('Total: \$${AppCubit.get(context).cartModel!.data!.total}', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text('${S.current.total}: \$${AppCubit.get(context).cartModel!.data!.total}', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   const SizedBox(width: 20),
                   ElevatedButton(
                       onPressed: () {
@@ -95,7 +96,7 @@ var cubit = AppCubit.get(context).cartModel?.data?.cartItems;
                       style: ButtonStyle(
                         backgroundColor:WidgetStateProperty.all(Colors.purpleAccent),
                       ),
-                      child: const Text('Order Now',
+                      child: Text(S.current.order,
                       style: TextStyle(fontSize: 20.0,color: Colors.white),)),
                   const Spacer(),]),
             ],
