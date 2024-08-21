@@ -1,0 +1,9 @@
+// 1)Splash screen
+// 2)cached data  if there is no internet connection
+// 3) firebase (fire auth for api data ,change pass,fire store,storage(profile photo),messaging)
+// 4) about us screen
+// 5) categories items navigate to another screen
+// 6) dark mode
+// 7) order now btn in cart screen implement
+// 8) inc. and dec. btn in cart screen for quantities of items
+// 9) icon and name of app

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/generated/l10n.dart';
 
 
 import '../Data/models/categories_data_model.dart';
@@ -24,16 +25,16 @@ class CategoriesScreen extends StatelessWidget {
 
     ];
     List<String> names = [
-      'Clothes',
-      'Electronics',
-      'Beauty',
-      'Sports',
-      'Home',
+      S.current.clothes,
+      S.current.electronics,
+      S.current.beauty,
+      S.current.sports,
+      S.current.home,
 
-      'Toys',
-      'Books',
+      S.current.Toys,
+      S.current.books,
 
-      'Grocery',
+      S.current.grocery,
     ];
     List<String>myImages = [
       'images/brand.png',

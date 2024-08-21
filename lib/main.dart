@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shop_app/Core/cache_memory/cache_memory_file.dart';
+import 'package:shop_app/generated/l10n.dart';
 import 'package:shop_app/views/home_screen.dart';
 import 'package:shop_app/views/onboarding_screen.dart';
 
@@ -19,6 +21,7 @@ Future<void> main() async {
   await CacheMemory.init();
   Widget widget;
   token = CacheMemory.getData(key: 'token');
+  currentLanguageCode = CacheMemory.getData(key: 'lang');
   if (token == null) {
     widget = OnboardingScreen();
   } else {
@@ -47,6 +50,14 @@ class MyApp extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
+            locale: Locale(currentLanguageCode??'en'),
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
             debugShowCheckedModeBanner: false,
             home: startWidget,
           );

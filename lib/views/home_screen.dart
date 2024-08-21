@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shop_app/generated/l10n.dart';
 import 'package:shop_app/views/search_screen.dart';
 
 import '../Core/cache_memory/cache_memory_file.dart';
@@ -52,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children:  [
-                            Text('Hi,${ cubit.userInfo?.data?.name}',style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                            Text('${S.current.hi},${ cubit.userInfo?.data?.name}',style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
                                 fontFamily: 'Playwrite'),),
                             ],
                     ),],),
@@ -69,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       leading: const Icon(Icons.home),
-                      title: const Text('Home',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                      title:  Text(S.current.home,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
                           ),
                       ),
                     ),
@@ -79,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const AccountScreen()));
                       },
                       leading: const Icon(Icons.key),
-                      title: const Text('Account',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                      title:  Text(S.current.account,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
                       ),
                       ),
                     ),
@@ -89,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const ContactusScreen()));
                       },
                       leading: const Icon(Icons.send_to_mobile),
-                      title: const Text('Contact us',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                      title:  Text(S.current.contact,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
                       ),
                       ),
                     ),
@@ -99,14 +101,42 @@ class HomeScreen extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const AboutUsScreen()));
                       },
                       leading: const Icon(Icons.help),
-                      title: const Text('About us',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                      title:  Text(S.current.about,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
                       ),
                       ),
                     ),
                     const SizedBox(height: 15,),
+                    ExpansionTile(
+                      leading:  FaIcon(FontAwesomeIcons.language),
+                        title: Text(S.current.applang,
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                        ),
+                        ),
+                      children: [
+                        ListTile(
+                          onTap: (){
+                            cubit.changeLanguage(lang:'en');
+                            Navigator.pop(context);
+                          },
+                          title:  Text("English",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                          ),
+                          ),
+                        ),
+                        ListTile(
+                          onTap: (){
+                            cubit.changeLanguage(lang:'ar');
+                            Navigator.pop(context);
+                          },
+                          title:  Text("العربيه",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                          ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15,),
                     ListTile(
                       leading: const Icon(Icons.exit_to_app),
-                      title: const Text('Signout',
+                      title:  Text(S.current.signOut,
                         style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
                       ),
                       ),
@@ -127,7 +157,7 @@ class HomeScreen extends StatelessWidget {
           ),
           appBar: AppBar(
             centerTitle: true,
-            title: const Text('Marché',
+            title:  Text(S.current.title,
               style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.deepPurple,
                   fontFamily: 'Playwrite'),),
             actions: [
@@ -143,25 +173,21 @@ class HomeScreen extends StatelessWidget {
             selectedIconTheme: const IconThemeData(color: Colors.white, size: 30),
             currentIndex: cubit.currentIndex,
             onTap: (index){
-              if(index==4){
-                scaffoldKey.currentState!.openDrawer();
+
                 cubit.changeIndex(index);
-              }else{
-                cubit.changeIndex(index);
-              }
+
 
             },
-             items: const [
+             items:  [
               BottomNavigationBarItem(backgroundColor: Colors.purple,
-                  icon:Icon(Icons.home,),label: 'Home'),
-              BottomNavigationBarItem(backgroundColor:  Colors.purple,icon: Icon(Icons.category),label: 'Categories'),
-              BottomNavigationBarItem(backgroundColor: Colors.purple,icon: Icon(Icons.favorite),label: 'Favorites'),
-              BottomNavigationBarItem(backgroundColor: Colors.purple,icon: Icon(Icons.shopping_cart),label: 'Cart'),
-              BottomNavigationBarItem(backgroundColor: Colors.purple,icon: Icon(Icons.person),label: 'Profile'),
+                  icon:Icon(Icons.home,),label: S.current.home),
+              BottomNavigationBarItem(backgroundColor:  Colors.purple,icon: Icon(Icons.category),label: S.current.category),
+              BottomNavigationBarItem(backgroundColor: Colors.purple,icon: Icon(Icons.favorite),label: S.current.favorite),
+              BottomNavigationBarItem(backgroundColor: Colors.purple,icon: Icon(Icons.shopping_cart),label:S.current.cart ),
 
             ],
           ),
-          body:cubit.currentIndex==4? cubit.bottomScreens[(cubit.currentIndex)-4]:cubit.bottomScreens[cubit.currentIndex],
+          body:cubit.bottomScreens[cubit.currentIndex],
 
         );
       }, listener:(context,state){},);

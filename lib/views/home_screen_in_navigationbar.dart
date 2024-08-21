@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/generated/l10n.dart';
 
 
 import '../Core/reusable_items/product_home_display.dart';
@@ -51,12 +52,12 @@ class HomeScreenInNavigationBar extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
                         children: [
                           Text(
-                            'Best Selling Products',
+                            S.current.bestSellingProducts,
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.right,
