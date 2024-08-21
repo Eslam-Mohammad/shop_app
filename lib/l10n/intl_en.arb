@@ -1,0 +1,28 @@
+{
+  "title": "Marché",
+    "home": "Home",
+    "category": "Category",
+    "cart": "Cart",
+    "favorite": "Favorite",
+    "bestSellingProducts": "Best Selling Products",
+    "account": "Account",
+    "contact": "Contact us",
+    "about": "About us",
+    "signOut": "Sign out",
+    "hi": "Hi",
+    "order": "Order Now",
+    "total": "Total",
+    "clothes": "Clothes",
+    "electronics": "Electronics",
+    "beauty": "Beauty",
+    "sports": "Sports",
+    "Toys": "Toys",
+    "books": "Books",
+    "grocery": "Grocery",
+    "itemremoved": "Item removed from cart",
+    "itemadded": "Item added to cart",
+    "applang": "Language"
+
+
+
+}
