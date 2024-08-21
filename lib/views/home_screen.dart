@@ -31,6 +31,7 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           key: scaffoldKey,
           drawer:  Drawer(
+
             child:Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -106,6 +107,21 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 15,),
+                    SwitchListTile(
+                      title:  Text("Dark Mode",
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple,
+                      ),
+                      ),
+                        secondary: const Icon(Icons.dark_mode),
+                      value: Theme.of(context).brightness== Brightness.dark,
+                        onChanged:(newValue){
+                          cubit.switchAppMode(newValue);
+
+                        },
+                    ),
+
+
+                    const SizedBox(height: 15,),
                     ExpansionTile(
                       leading:  FaIcon(FontAwesomeIcons.language),
                         title: Text(S.current.applang,
@@ -158,8 +174,7 @@ class HomeScreen extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title:  Text(S.current.title,
-              style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.deepPurple,
-                  fontFamily: 'Playwrite'),),
+               ),
             actions: [
               IconButton(onPressed: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SearchScreen()));
@@ -179,11 +194,11 @@ class HomeScreen extends StatelessWidget {
 
             },
              items:  [
-              BottomNavigationBarItem(backgroundColor: Colors.purple,
+              BottomNavigationBarItem(backgroundColor: Theme.of(context).colorScheme.primary,
                   icon:Icon(Icons.home,),label: S.current.home),
-              BottomNavigationBarItem(backgroundColor:  Colors.purple,icon: Icon(Icons.category),label: S.current.category),
-              BottomNavigationBarItem(backgroundColor: Colors.purple,icon: Icon(Icons.favorite),label: S.current.favorite),
-              BottomNavigationBarItem(backgroundColor: Colors.purple,icon: Icon(Icons.shopping_cart),label:S.current.cart ),
+              BottomNavigationBarItem(backgroundColor: Theme.of(context).colorScheme.primary,icon: Icon(Icons.category),label: S.current.category),
+              BottomNavigationBarItem(backgroundColor: Theme.of(context).colorScheme.primary,icon: Icon(Icons.favorite),label: S.current.favorite),
+              BottomNavigationBarItem(backgroundColor: Theme.of(context).colorScheme.primary,icon: Icon(Icons.shopping_cart),label:S.current.cart ),
 
             ],
           ),

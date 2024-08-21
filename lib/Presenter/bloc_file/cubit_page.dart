@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Core/constant_variables_file.dart';
 import 'package:shop_app/Presenter/bloc_file/state_page.dart';
@@ -33,6 +34,21 @@ class AppCubit extends Cubit<AppStates> {
     const CartScreen(),
 
   ];
+
+
+  void switchAppMode(bool isDark){
+    if(isDark){
+      appMode = ThemeMode.dark;
+    }else{
+      appMode = ThemeMode.light;
+    }
+
+    CacheMemory.saveData(key: 'isDark', value: isDark);
+    emit(AppChangeModeState());
+  }
+
+
+
 
   void changeimage(index) {
     imageIndex = index;

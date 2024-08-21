@@ -10,6 +10,7 @@ abstract class AppStates {}
 
 class InitialState extends AppStates {}
 class ChangeIndexState extends AppStates {}
+class AppChangeModeState extends AppStates {}
 class ChangeLanguageState extends AppStates {}
 class LoginState extends AppStates {}
 class LoginLoadingState extends AppStates {}

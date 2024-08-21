@@ -22,6 +22,7 @@ Future<void> main() async {
   Widget widget;
   token = CacheMemory.getData(key: 'token');
   currentLanguageCode = CacheMemory.getData(key: 'lang');
+  appMode = (CacheMemory.getData(key: 'isDark')??false)  ? ThemeMode.dark : ThemeMode.light ;
   if (token == null) {
     widget = OnboardingScreen();
   } else {
@@ -50,6 +51,21 @@ class MyApp extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
+            themeMode: appMode,
+           darkTheme: darkTheme,
+            theme:ThemeData(
+              appBarTheme:  AppBarTheme(
+                titleTextStyle: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Theme.of(context).colorScheme.primary,
+                    fontFamily: 'Playwrite'),
+                backgroundColor: Colors.white,
+                elevation: 0.0,
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                ),
+              ),
+              brightness: Brightness.light,
+              colorScheme: colorScheme,
+            ),
             locale: Locale(currentLanguageCode??'en'),
             localizationsDelegates: [
               S.delegate,

@@ -77,7 +77,7 @@ var cubit = AppCubit.get(context).cartModel?.data?.cartItems;
               Expanded(
                 child: ListView.separated(
                   itemBuilder: (context, index) => itemBuilder(context, cubit[index].product),
-                  separatorBuilder: (context, index) => const Divider(thickness: 10.0,),
+                  separatorBuilder: (context, index) =>  Divider(thickness: 2.0,color: Theme.of(context).colorScheme.secondary,),
                   itemCount: cubit!.length,
                 ),
               ),
